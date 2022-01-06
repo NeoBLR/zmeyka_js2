@@ -76,7 +76,7 @@ let interface = (Score, Len) => {
   ctx.textBaseline = 'top'
   ctx.textAlign = 'start'
 
-  ctx.fillText('Score: ' + Score, 0, 0 + 10)
+  ctx.fillText('Score: ' + Score, 0 + 10, 0 + 10)
 
   //len
 
