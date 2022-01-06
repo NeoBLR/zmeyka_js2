@@ -92,6 +92,12 @@ let MainLoop = setInterval(() => {
 
 // event
 
+window.addEventListener('orientationchange', function (event) {
+  W = window.innerWidth
+  H = window.innerHeight
+  Draw()
+})
+
 window.addEventListener(
   'resize',
   function (event) {
