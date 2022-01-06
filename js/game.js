@@ -117,3 +117,60 @@ document.addEventListener('keydown', (e) => {
     Snake.direction = 'right'
   }
 })
+
+//swipe not my code
+
+document.addEventListener('touchstart', handleTouchStart, false)
+document.addEventListener('touchmove', handleTouchMove, false)
+
+var xDown = null
+var yDown = null
+
+function getTouches(evt) {
+  return (
+    evt.touches || // browser API
+    evt.originalEvent.touches
+  ) // jQuery
+}
+
+function handleTouchStart(evt) {
+  const firstTouch = getTouches(evt)[0]
+  xDown = firstTouch.clientX
+  yDown = firstTouch.clientY
+}
+
+function handleTouchMove(evt) {
+  if (!xDown || !yDown) {
+    return
+  }
+
+  let xUp = evt.touches[0].clientX
+  let yUp = evt.touches[0].clientY
+
+  let xDiff = xDown - xUp
+  let yDiff = yDown - yUp
+
+  if (Math.abs(xDiff) > Math.abs(yDiff)) {
+    /*most significant*/
+    if (xDiff > 0) {
+      /* right swipe */
+      Snake.direction = 'right'
+    } else {
+      /* left swipe */
+      Snake.direction = 'left'
+    }
+  } else {
+    if (yDiff > 0) {
+      /* down swipe */
+      Snake.direction = 'down'
+    } else {
+      /* up swipe */
+      Snake.direction = 'up'
+    }
+  }
+  /* reset values */
+  xDown = null
+  yDown = null
+}
+
+//swipe not my code
