@@ -83,15 +83,25 @@ let interface = (Score, Len) => {
   //score
   ctx.fillStyle = color.gray
   ctx.font = '5vh Arial'
-  ctx.textBaseline = 'top'
-  ctx.textAlign = 'start'
 
+  ctx.textBaseline = 'top'
+
+  ctx.textAlign = 'start'
   ctx.fillText('Score: ' + Score, 0 + 10, 0 + 10)
 
   //len
 
   ctx.textAlign = 'end'
   ctx.fillText('Len: ' + Len, W - 10, 0 + 10)
+
+  //
+  ctx.textAlign = 'start'
+  ctx.fillText('X: ' + Snake.x, 0 + 10, 50 + 10)
+
+  //
+
+  ctx.textAlign = 'end'
+  ctx.fillText('Y: ' + Snake.y, W - 10, 50 + 10)
 }
 
 main()
