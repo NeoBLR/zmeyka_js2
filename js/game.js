@@ -35,19 +35,19 @@ class Snakes {
     // teleport to inverse
 
     if (this.y / 32 <= -1) {
-      this.y = Math.floor(screen.height / 32 - 2) * 32
+      this.y = Math.floor(screen.height / 32 - 1) * 32
     }
 
     if (this.x / 32 <= -1) {
-      this.x = Math.floor(screen.width / 32 - 2) * 32
+      this.x = Math.floor(screen.width / 32 - 1) * 32
     }
 
-    if (this.y / 32 >= Math.floor(screen.height / 32 - 1)) {
-      this.y = 32
+    if (this.y / 32 >= Math.floor(screen.height / 32 + 1)) {
+      this.y = 0
     }
 
-    if (this.x / 32 >= Math.floor(screen.width / 32 - 1)) {
-      this.x = 32
+    if (this.x / 32 >= Math.floor(screen.width / 32)) {
+      this.x = 0
     }
     console.log()
   }
@@ -126,12 +126,12 @@ let interface = (Score, Len) => {
 
   //
   ctx.textAlign = 'start'
-  ctx.fillText('maxX: ' + Math.floor(screen.width / 32 - 1), 0 + 10, 100 + 10)
+  ctx.fillText('maxX: ' + Math.floor(screen.width / 32), 0 + 10, 100 + 10)
 
   //
 
   ctx.textAlign = 'end'
-  ctx.fillText('maxY: ' + Math.floor(screen.height / 32 - 1), W - 10, 100 + 10)
+  ctx.fillText('maxY: ' + Math.floor(screen.height / 32), W - 10, 100 + 10)
 }
 
 main()
@@ -214,18 +214,18 @@ function handleTouchMove(evt) {
     /*most significant*/
     if (xDiff > 0) {
       /* right swipe */
-      Snake.direction = 'right'
+      Snake.direction = 'left'
     } else {
       /* left swipe */
-      Snake.direction = 'left'
+      Snake.direction = 'right'
     }
   } else {
     if (yDiff > 0) {
       /* down swipe */
-      Snake.direction = 'down'
+      Snake.direction = 'up'
     } else {
       /* up swipe */
-      Snake.direction = 'up'
+      Snake.direction = 'down'
     }
   }
   /* reset values */
