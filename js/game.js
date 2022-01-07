@@ -1,5 +1,5 @@
-let W = window.innerWidth
-let H = window.innerHeight
+let W = screen.width
+let H = screen.height
 let canvas = document.getElementById('canvas')
 let ctx = canvas.getContext('2d')
 
@@ -55,10 +55,20 @@ let clean = () => {
 let Snake = new Snakes(W / 2, H / 2)
 
 let main = () => {
-  Draw()
+  Move()
 }
 
-let Draw = () => {
+let DrawOnResize = () => {
+  ctx.canvas.width = W
+  ctx.canvas.height = H
+
+  clean()
+  background()
+  Snake.Draw()
+  interface(score, len)
+}
+
+let Move = () => {
   ctx.canvas.width = W
   ctx.canvas.height = H
 
@@ -87,7 +97,7 @@ let interface = (Score, Len) => {
 main()
 
 let MainLoop = setInterval(() => {
-  Draw()
+  Move()
 }, 800)
 
 // event
@@ -97,7 +107,8 @@ window.addEventListener('orientationchange', function (event) {
   W = ori == 90 || ori == -90 ? screen.height : screen.width
   H = ori == 90 || ori == -90 ? screen.width : screen.height
 
-  Draw()
+  // Draw()
+  DrawOnResize()
   console.log('orientationchange')
 })
 
@@ -107,7 +118,7 @@ window.addEventListener(
     // console.log('resize')
     W = window.innerWidth
     H = window.innerHeight
-    Draw()
+    DrawOnResize()
   },
   true
 )
