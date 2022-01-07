@@ -34,22 +34,22 @@ class Snakes {
 
     // teleport to inverse
 
-    if (this.y / 32 === -1) {
-      this.y = 32 * 24
+    if (this.y / 32 <= -1) {
+      this.y = Math.floor(screen.height / 32 - 2) * 32
     }
 
-    if (this.x / 32 === -1) {
-      this.x = 32 * 24
+    if (this.x / 32 <= -1) {
+      this.x = Math.floor(screen.width / 32 - 2) * 32
     }
 
-    if (this.y / 32 === Math.floor(screen.height / 32 - 1)) {
+    if (this.y / 32 >= Math.floor(screen.height / 32 - 1)) {
       this.y = 32
     }
 
-    if (this.x / 32 === Math.floor(screen.width / 32 - 1)) {
+    if (this.x / 32 >= Math.floor(screen.width / 32 - 1)) {
       this.x = 32
     }
-    console.log(this.y / 32)
+    console.log()
   }
 }
 
