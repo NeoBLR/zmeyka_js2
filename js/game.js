@@ -31,6 +31,23 @@ class Snakes {
     if (this.direction === 'right') {
       this.x += 32
     }
+
+    if (this.y / 32 === -1) {
+      this.y = 32 * 24
+    }
+
+    if (this.x / 32 === -1) {
+      this.x = 32 * 24
+    }
+
+    if (this.y / 32 === 25) {
+      this.y = 32
+    }
+
+    if (this.x / 32 === 25) {
+      this.x = 32
+    }
+    console.log(this.y / 32)
   }
 }
 
@@ -52,7 +69,7 @@ let clean = () => {
   ctx.clearRect(0, 0, W, H)
 }
 
-let Snake = new Snakes(W / 2, H / 2)
+let Snake = new Snakes(32 * 14, 32 * 14)
 
 let main = () => {
   Move()
@@ -110,7 +127,7 @@ main()
 
 let MainLoop = setInterval(() => {
   Move()
-}, 800)
+}, 400)
 
 // event
 
