@@ -55,13 +55,13 @@ let clean = () => {
 let Snake = new Snakes(W / 2, H / 2)
 
 let main = () => {
-  ctx.canvas.width = W
-  ctx.canvas.height = H
-
   Draw()
 }
 
 let Draw = () => {
+  ctx.canvas.width = W
+  ctx.canvas.height = H
+
   clean()
   background()
   Snake.SetPosition()
@@ -93,9 +93,12 @@ let MainLoop = setInterval(() => {
 // event
 
 window.addEventListener('orientationchange', function (event) {
-  W = window.innerWidth
-  H = window.innerHeight
+  let ori = window.orientation
+  W = ori == 90 || ori == -90 ? screen.height : screen.width
+  H = ori == 90 || ori == -90 ? screen.width : screen.height
+
   Draw()
+  console.log('orientationchange')
 })
 
 window.addEventListener(
