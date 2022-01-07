@@ -96,12 +96,12 @@ let interface = (Score, Len) => {
 
   //
   ctx.textAlign = 'start'
-  ctx.fillText('X: ' + Snake.x, 0 + 10, 50 + 10)
+  ctx.fillText('X: ' + Math.round(Snake.x / 32), 0 + 10, 50 + 10)
 
   //
 
   ctx.textAlign = 'end'
-  ctx.fillText('Y: ' + Snake.y, W - 10, 50 + 10)
+  ctx.fillText('Y: ' + Math.round(Snake.y / 32), W - 10, 50 + 10)
 }
 
 main()
