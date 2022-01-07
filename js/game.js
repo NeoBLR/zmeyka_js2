@@ -32,6 +32,8 @@ class Snakes {
       this.x += 32
     }
 
+    // teleport to inverse
+
     if (this.y / 32 === -1) {
       this.y = 32 * 24
     }
@@ -40,11 +42,11 @@ class Snakes {
       this.x = 32 * 24
     }
 
-    if (this.y / 32 === 25) {
+    if (this.y / 32 === Math.floor(screen.height / 32 - 1)) {
       this.y = 32
     }
 
-    if (this.x / 32 === 25) {
+    if (this.x / 32 === Math.floor(screen.width / 32 - 1)) {
       this.x = 32
     }
     console.log(this.y / 32)
@@ -121,6 +123,15 @@ let interface = (Score, Len) => {
 
   ctx.textAlign = 'end'
   ctx.fillText('Y: ' + Math.round(Snake.y / 32), W - 10, 50 + 10)
+
+  //
+  ctx.textAlign = 'start'
+  ctx.fillText('maxX: ' + Math.floor(screen.width / 32 - 1), 0 + 10, 100 + 10)
+
+  //
+
+  ctx.textAlign = 'end'
+  ctx.fillText('maxY: ' + Math.floor(screen.height / 32 - 1), W - 10, 100 + 10)
 }
 
 main()
