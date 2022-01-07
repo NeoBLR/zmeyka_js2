@@ -1,5 +1,5 @@
-let W = screen.width
-let H = screen.height
+let W = windows.innerWidth
+let H = windows.innerHeight
 let canvas = document.getElementById('canvas')
 let ctx = canvas.getContext('2d')
 
@@ -35,18 +35,18 @@ class Snakes {
     // teleport to inverse
 
     if (this.y / 32 <= -1) {
-      this.y = Math.floor(screen.height / 32 - 1) * 32
+      this.y = Math.floor(windows.innerHeight / 32 - 1) * 32
     }
 
     if (this.x / 32 <= -1) {
-      this.x = Math.floor(screen.width / 32 - 1) * 32
+      this.x = Math.floor(windows.innerWidth / 32 - 1) * 32
     }
 
-    if (this.y / 32 >= Math.floor(screen.height / 32 + 1)) {
+    if (this.y / 32 >= Math.floor(windows.innerHeight / 32 + 1)) {
       this.y = 0
     }
 
-    if (this.x / 32 >= Math.floor(screen.width / 32)) {
+    if (this.x / 32 >= Math.floor(windows.innerWidth / 32)) {
       this.x = 0
     }
     console.log()
@@ -126,12 +126,16 @@ let interface = (Score, Len) => {
 
   //
   ctx.textAlign = 'start'
-  ctx.fillText('maxX: ' + Math.floor(screen.width / 32), 0 + 10, 100 + 10)
+  ctx.fillText('maxX: ' + Math.floor(windows.innerWidth / 32), 0 + 10, 100 + 10)
 
   //
 
   ctx.textAlign = 'end'
-  ctx.fillText('maxY: ' + Math.floor(screen.height / 32), W - 10, 100 + 10)
+  ctx.fillText(
+    'maxY: ' + Math.floor(windows.innerHeight / 32),
+    W - 10,
+    100 + 10
+  )
 }
 
 main()
@@ -144,8 +148,8 @@ let MainLoop = setInterval(() => {
 
 window.addEventListener('orientationchange', function (event) {
   let ori = window.orientation
-  W = ori == 90 || ori == -90 ? screen.height : screen.width
-  H = ori == 90 || ori == -90 ? screen.width : screen.height
+  W = ori == 90 || ori == -90 ? windows.innerHeight : windows.innerWidth
+  H = ori == 90 || ori == -90 ? windows.innerWidth : windows.innerHeight
 
   // Draw()
   DrawOnResize()
