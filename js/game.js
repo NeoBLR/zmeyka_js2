@@ -94,6 +94,8 @@ let interface = (Score, Len) => {
   ctx.textAlign = 'end'
   ctx.fillText('Len: ' + Len, W - 10, 0 + 10)
 
+  ctx.font = '3vh Arial'
+
   //
   ctx.textAlign = 'start'
   ctx.fillText('X: ' + Math.round(Snake.x / 32), 0 + 10, 50 + 10)
