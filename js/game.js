@@ -5,6 +5,7 @@ let ctx = canvas.getContext('2d')
 
 let score = 0
 let len = 1
+let version = 'govna'
 
 class Snakes {
   static direction = ''
@@ -140,6 +141,13 @@ let interface = (Score, Len) => {
     W - 10,
     100 + 10
   )
+
+  //
+
+  ctx.textAlign = 'start'
+  ctx.textBaseline = 'bottom'
+
+  ctx.fillText('Version: ' + version, 10, H)
 }
 
 main()
