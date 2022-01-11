@@ -6,31 +6,46 @@ let ctx = canvas.getContext('2d')
 let score = 0
 let len = 1
 let version = 'govna'
+let speed = 2
 
-class Snakes {
-  static direction = ''
-
-  constructor(x, y) {
+class Vector {
+  constructor(x, y, color) {
     this.x = x
     this.y = y
+    this.color = color
   }
-
   Draw() {
-    ctx.fillStyle = color.red
+    ctx.fillStyle = this.color
     ctx.fillRect(this.x, this.y, 32, 32)
   }
+  GetPosition() {
+    return {
+      x: this.x,
+      y: this.y,
+    }
+  }
+}
+
+class Apples extends Vector {}
+
+class Tail extends Vector {}
+
+class Snakes extends Vector {
+  static direction = ''
+  static Tails = []
+
   SetPosition() {
     if (this.direction === 'up') {
-      this.y -= 32
+      this.y -= speed
     }
     if (this.direction === 'down') {
-      this.y += 32
+      this.y += speed
     }
     if (this.direction === 'left') {
-      this.x -= 32
+      this.x -= speed
     }
     if (this.direction === 'right') {
-      this.x += 32
+      this.x += speed
     }
 
     // teleport to inverse
@@ -72,7 +87,8 @@ let clean = () => {
   ctx.clearRect(0, 0, W, H)
 }
 
-let Snake = new Snakes(32 * 14, 32 * 14)
+let Snake = new Snakes(32 * 14, 32 * 14, color.red)
+let Apple = new Apples(10, 10, color.green)
 
 let main = () => {
   Move()
@@ -84,7 +100,11 @@ let DrawOnResize = () => {
 
   clean()
   background()
+
+  Apple.Draw()
+
   Snake.Draw()
+
   interface(score, len)
 }
 
@@ -94,8 +114,12 @@ let Move = () => {
 
   clean()
   background()
+
+  Apple.Draw()
+
   Snake.SetPosition()
   Snake.Draw()
+
   interface(score, len)
 }
 
@@ -154,7 +178,7 @@ main()
 
 let MainLoop = setInterval(() => {
   Move()
-}, 400)
+}, 1000 / 60)
 
 // event
 
@@ -197,6 +221,9 @@ document.addEventListener('keydown', (e) => {
   }
   if (e.key.toLocaleLowerCase() === 'd') {
     Snake.direction = 'right'
+  }
+  if (e.key.toLocaleLowerCase() === 'f') {
+    canvas.requestFullscreen()
   }
 })
 
