@@ -123,6 +123,8 @@ let Move = () => {
   interface(score, len)
 }
 
+class Button extends Vector {}
+
 let interface = (Score, Len) => {
   //score
   ctx.fillStyle = color.gray
